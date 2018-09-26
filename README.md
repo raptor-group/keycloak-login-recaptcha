@@ -17,7 +17,7 @@ keycloak:
 	.
 	volumes:
 		- ./realm-config:/opt/jboss/keycloak/realm-config
-		- ./marjaa/:/opt/jboss/keycloak/themes/marjaa/
+		- ./my-theme/:/opt/jboss/keycloak/themes/my-theme/
 		- ./kc-recaptcha-module/target/recaptcha-login.jar:/opt/jboss/keycloak/standalone/deployments/recaptcha-login.jar
 ...
 ```
