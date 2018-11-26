@@ -21,7 +21,7 @@ keycloak:
 		- ./kc-recaptcha-module/target/recaptcha-login.jar:/opt/jboss/keycloak/standalone/deployments/recaptcha-login.jar
 ...
 ```
-and in your theme file you should add this peace of code in your `login.ftl` template file:
+and in your theme file you should add this piece of code in your `login.ftl` template file:
 ```
 <#if recaptchaRequired??>
 <div class="form-group">
