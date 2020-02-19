@@ -1,13 +1,5 @@
 package org.keycloak.marjaa.providers.login.recaptcha.authenticator;
 
-import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-
-import javax.ws.rs.core.MultivaluedMap;
-
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
@@ -28,12 +20,28 @@ import org.keycloak.services.messages.Messages;
 import org.keycloak.services.validation.Validation;
 import org.keycloak.util.JsonSerialization;
 
+import javax.ws.rs.core.MultivaluedMap;
+import javax.ws.rs.core.Response;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+
 public class RecaptchaUsernamePasswordForm extends UsernamePasswordForm implements Authenticator{
 	public static final String G_RECAPTCHA_RESPONSE = "g-recaptcha-response";
 	public static final String RECAPTCHA_REFERENCE_CATEGORY = "recaptcha";
 	public static final String SITE_KEY = "site.key";
 	public static final String SITE_SECRET = "secret";
 	private static final Logger logger = Logger.getLogger(RecaptchaUsernamePasswordFormFactory.class);
+	private String siteKey;
+
+	@Override
+	protected Response createLoginForm( LoginFormsProvider form ) {
+		form.setAttribute("recaptchaRequired", true);
+		form.setAttribute("recaptchaSiteKey", siteKey);
+		return super.createLoginForm( form );
+	}
 
 	@Override
 	public void authenticate(AuthenticationFlowContext context) {
@@ -53,7 +61,7 @@ public class RecaptchaUsernamePasswordForm extends UsernamePasswordForm implemen
 			form.addError(new FormMessage(null, Messages.RECAPTCHA_NOT_CONFIGURED));
 			return;
 		}
-		String siteKey = captchaConfig.getConfig().get(SITE_KEY);
+		siteKey = captchaConfig.getConfig().get(SITE_KEY);
 		form.setAttribute("recaptchaRequired", true);
 		form.setAttribute("recaptchaSiteKey", siteKey);
 		form.addScript("https://www.google.com/recaptcha/api.js?hl=" + userLanguageTag);
@@ -93,7 +101,7 @@ public class RecaptchaUsernamePasswordForm extends UsernamePasswordForm implemen
 			logger.debug("action(AuthenticationFlowContext) - end");
 		}
 	}
-	
+
 	protected boolean validateRecaptcha(AuthenticationFlowContext context, boolean success, String captcha, String secret) {
 		HttpClient httpClient = context.getSession().getProvider(HttpClientProvider.class).getHttpClient();
 		HttpPost post = new HttpPost("https://www.google.com/recaptcha/api/siteverify");
@@ -117,6 +125,6 @@ public class RecaptchaUsernamePasswordForm extends UsernamePasswordForm implemen
 			ServicesLogger.LOGGER.recaptchaFailed(e);
 		}
 		return success;
-	}    
+	}
 
 }
