@@ -35,3 +35,8 @@ and in your theme file you should add this piece of code in your `login.ftl` tem
 you should past it inside your login `<form></form>` in your login template (`login.ftl`)
 
 And finally you should enable external origin `https://google.com` like the way in keycloaks'  [Recaptcha Documentation](https://www.keycloak.org/docs/latest/server_admin/index.html#_recaptcha) mentioned.
+
+
+# Thanks
+
+Thanks to @jabolina for fix of unsuccessful login problem.
