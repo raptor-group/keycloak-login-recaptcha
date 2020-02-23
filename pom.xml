@@ -33,35 +33,43 @@
     <version>0.1.0</version>
     <packaging>jar</packaging>
 
+    <properties>
+        <java.version>1.8</java.version>
+        <version.keycloak>8.0.0</version.keycloak>
+        <version.jboss>3.3.0.Final</version.jboss>
+        <version.jboss-ejb-api>1.0.0.Final</version.jboss-ejb-api>
+        <jboss.logging.version>3.4.1.Final</jboss.logging.version>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>org.keycloak</groupId>
             <artifactId>keycloak-core</artifactId>
-            <version>7.0.0</version>
+            <version>${version.keycloak}</version>
 	        <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.keycloak</groupId>
             <artifactId>keycloak-server-spi</artifactId>
-            <version>4.4.0.Final</version>
+            <version>${version.keycloak}</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.keycloak</groupId>
             <artifactId>keycloak-server-spi-private</artifactId>
-            <version>4.4.0.Final</version>
+            <version>${version.keycloak}</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.jboss.logging</groupId>
             <artifactId>jboss-logging</artifactId>
-    	    <version>3.3.2.Final</version>
+            <version>${jboss.logging.version}</version>
             <scope>provided</scope>
         </dependency>
 		<dependency>
             <groupId>org.keycloak</groupId>
             <artifactId>keycloak-services</artifactId>
-            <version>4.4.0.Final</version>
+            <version>${version.keycloak}</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>
