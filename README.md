@@ -1,6 +1,6 @@
 # keycloak-login-recaptcha
 
-By default Keycloak ( up to 4.4.0) only supports ReCaptcha for Regsitration, not login. so we created a simple module for activating recaptcha for login
+By default Keycloak (up to 8.0.2) only supports ReCaptcha for Regsitration, not login. so we created a simple module for activating recaptcha for login
 
 #		How to use
 for building you need to run `mvn clean install`.  it will produce a jar `target/recaptcha-login.jar`.
@@ -11,7 +11,7 @@ for example in my docker compose file:
 ```
 ...
 keycloak:
-	image: jboss/keycloak:4.2.1.Final
+	image: jboss/keycloak:8.0.2
 	.
 	.
 	.
@@ -39,4 +39,4 @@ And finally you should enable external origin `https://google.com` like the way 
 
 # Thanks
 
-Thanks to @jabolina for fix of unsuccessful login problem.
+Thanks to [@jabolina](github.com/jabolina) for fixing unsuccessful login problem.
