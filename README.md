@@ -1,6 +1,6 @@
 # keycloak-login-recaptcha
 
-By default Keycloak (up to 8.0.2) only supports ReCaptcha for Regsitration, not login. so we created a simple module for activating recaptcha for login
+By default Keycloak (up to 8.0.2) only supports ReCaptcha for Registration, not login. so we created a simple module for activating recaptcha for login
 
 #		How to use
 for building you need to run `mvn clean install`.  it will produce a jar `target/recaptcha-login.jar`.
