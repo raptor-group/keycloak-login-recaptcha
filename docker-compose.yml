@@ -11,6 +11,6 @@ services:
     volumes:
       # - ./keycloak/realm-export.json:/tmp/realm-export.json
       - ./login.ftl:/opt/jboss/keycloak/themes/base/login/login.ftl
+      - ./target/recaptcha-login.jar:/opt/jboss/keycloak/standalone/deployments/recaptcha-login.jar
     ports:
       - 8080:8080
-      - 9990:9990
