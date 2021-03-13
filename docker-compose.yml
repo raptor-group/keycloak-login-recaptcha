@@ -7,9 +7,9 @@ services:
     environment:
       KEYCLOAK_USER: admin
       KEYCLOAK_PASSWORD: admin
-      # KEYCLOAK_IMPORT: /tmp/realm-export.json
+      KEYCLOAK_IMPORT: /tmp/playground-realm.json
     volumes:
-      # - ./keycloak/realm-export.json:/tmp/realm-export.json
+      - ./playground-realm.json:/tmp/playground-realm.json
       - ./login.ftl:/opt/jboss/keycloak/themes/base/login/login.ftl
       - ./target/recaptcha-login.jar:/opt/jboss/keycloak/standalone/deployments/recaptcha-login.jar
     ports:
