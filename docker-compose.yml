@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  keycloak:
+    image: jboss/keycloak
+    restart: always
+    environment:
+      KEYCLOAK_USER: admin
+      KEYCLOAK_PASSWORD: admin
+      # KEYCLOAK_IMPORT: /tmp/realm-export.json
+    volumes:
+      # - ./keycloak/realm-export.json:/tmp/realm-export.json
+      - ./login.ftl:/opt/jboss/keycloak/themes/base/login/login.ftl
+    ports:
+      - 8080:8080
+      - 9990:9990
