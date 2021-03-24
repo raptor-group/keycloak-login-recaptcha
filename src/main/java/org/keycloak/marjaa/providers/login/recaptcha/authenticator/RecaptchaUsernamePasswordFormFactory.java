@@ -8,13 +8,11 @@ import org.keycloak.OAuth2Constants;
 import org.keycloak.authentication.Authenticator;
 import org.keycloak.authentication.AuthenticatorFactory;
 import org.keycloak.authentication.DisplayTypeAuthenticatorFactory;
-import org.keycloak.authentication.authenticators.browser.UsernamePasswordForm;
-import org.keycloak.authentication.authenticators.browser.UsernamePasswordFormFactory;
 import org.keycloak.authentication.authenticators.console.ConsoleUsernamePasswordAuthenticator;
 import org.keycloak.models.AuthenticationExecutionModel;
 import org.keycloak.models.KeycloakSession;
 import org.keycloak.models.KeycloakSessionFactory;
-import org.keycloak.models.UserCredentialModel;
+import org.keycloak.models.credential.PasswordCredentialModel;
 import org.keycloak.provider.ProviderConfigProperty;
 
 public class RecaptchaUsernamePasswordFormFactory  implements AuthenticatorFactory, DisplayTypeAuthenticatorFactory {
@@ -56,7 +54,7 @@ public class RecaptchaUsernamePasswordFormFactory  implements AuthenticatorFacto
 
     @Override
     public String getReferenceCategory() {
-        return UserCredentialModel.PASSWORD;
+        return PasswordCredentialModel.TYPE;
     }
 
     @Override
@@ -83,24 +81,31 @@ public class RecaptchaUsernamePasswordFormFactory  implements AuthenticatorFacto
         return "Validates a username and password from login form + google recaptcha";
     }
 
-	private static final List<ProviderConfigProperty> CONFIG_PROPERTIES = new ArrayList<ProviderConfigProperty>();
+	private static final List<ProviderConfigProperty> CONFIG_PROPERTIES = new ArrayList<>();
 
-	static {
-		ProviderConfigProperty property;
-		property = new ProviderConfigProperty();
-		property.setName(RecaptchaUsernamePasswordForm.SITE_KEY);
-		property.setLabel("Recaptcha Site Key");
-		property.setType(ProviderConfigProperty.STRING_TYPE);
-		property.setHelpText("Google Recaptcha Site Key");
-		CONFIG_PROPERTIES.add(property);
-		property = new ProviderConfigProperty();
-		property.setName(RecaptchaUsernamePasswordForm.SITE_SECRET);
-		property.setLabel("Recaptcha Secret");
-		property.setType(ProviderConfigProperty.STRING_TYPE);
-		property.setHelpText("Google Recaptcha Secret");
-		CONFIG_PROPERTIES.add(property);
+    static {
+        ProviderConfigProperty property;
+        property = new ProviderConfigProperty();
+        property.setName(RecaptchaUsernamePasswordForm.SITE_KEY);
+        property.setLabel("Recaptcha Site Key");
+        property.setType(ProviderConfigProperty.STRING_TYPE);
+        property.setHelpText("Google Recaptcha Site Key");
+        CONFIG_PROPERTIES.add(property);
 
-	}
+        property = new ProviderConfigProperty();
+        property.setName(RecaptchaUsernamePasswordForm.SITE_SECRET);
+        property.setLabel("Recaptcha Secret");
+        property.setType(ProviderConfigProperty.STRING_TYPE);
+        property.setHelpText("Google Recaptcha Secret");
+        CONFIG_PROPERTIES.add(property);
+
+        property = new ProviderConfigProperty();
+        property.setName(RecaptchaUsernamePasswordForm.USE_RECAPTCHA_NET);
+        property.setLabel("use recaptcha.net");
+        property.setType(ProviderConfigProperty.BOOLEAN_TYPE);
+        property.setHelpText("Use recaptcha.net? (or else google.com)");
+        CONFIG_PROPERTIES.add(property);
+    }
 
 	@Override
 	public List<ProviderConfigProperty> getConfigProperties() {
