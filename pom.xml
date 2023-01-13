@@ -35,7 +35,7 @@
 
     <properties>
         <java.version>1.8</java.version>
-        <version.keycloak>18.0.0</version.keycloak>
+        <version.keycloak>20.0.3</version.keycloak>
 <!--        <version.jboss>3.3.0.Final</version.jboss>-->
 <!--        <version.jboss-ejb-api>1.0.0.Final</version.jboss-ejb-api>-->
         <jboss.logging.version>3.4.1.Final</jboss.logging.version>
